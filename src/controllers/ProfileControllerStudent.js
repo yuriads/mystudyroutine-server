@@ -65,7 +65,7 @@ module.exports = {
         count_performance = count_performance + 1;
 
         //const count_performance = count_add;
-        const performance = parseInt((count_performance / count['count(*)']) * 100);
+        const performance = parseInt((count_performance / (4 * count['count(*)'])) * 100);
 
         console.log(count_performance);
 

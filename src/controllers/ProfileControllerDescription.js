@@ -12,6 +12,7 @@ module.exports = {
             .where({
                 id: id_student
             })
+            .first()
             .select('*')
 
         return response.json(students);

@@ -28,6 +28,7 @@ module.exports = {
 
         const count_performance = 0;
         const performance = 0;
+        const week = 0;
 
         const student = await connection('students')
             .where('id', id_student)//veriicando se o id da sucject é o mesmo que estamos passando por parâmetro
@@ -43,6 +44,7 @@ module.exports = {
             .update({
                 count_performance,
                 performance,
+                week,
             });
 
         return response.status(204).send(''); //o status 204 é quando retornamos uma mensagem de sucesso sem corpo para o nosso frontend
