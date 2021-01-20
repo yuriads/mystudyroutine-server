@@ -20,8 +20,6 @@ module.exports = {
         const disable = 0;
         const id_student = request.headers.authorization;
 
-        
-        // desestruturando para jogar dentro da constante [id] os dados
         const [id] = await connection('subjects').insert({
             day,
             name,
@@ -35,37 +33,35 @@ module.exports = {
     },
 
     async delete (request, response) {
-        // pegando o id que vem por parâmetro
         const { id } = request.params;
-        const id_student = request.headers.authorization;//usamos o id_student para saber se o subject que estamos deletando realmente foi criado pelo o usuário
+        const id_student = request.headers.authorization;
 
         const subject = await connection('subjects')
-            .where('id', id)//veriicando se o id da sucject é o mesmo que estamos passando por parâmetro
-            .select('id_student')//selecionando o id_student
-            .first();//seleciona apenas um
+            .where('id', id)
+            .select('id_student')
+            .first();
 
-            if (subject.id_student != id_student){//se o id_student desse subject que buscamos no banco de dados for diferente do id_student que está logado da aplicação vai dá um erro
-                return response.status(401).json({ error: 'Operação não permitida'});// o status 401 significa não autorizado. depois passamos um objeto com uma mensagem de erro
+            if (subject.id_student != id_student){
+                return response.status(401).json({ error: 'Operação não permitida'});
             }
 
             await connection('subjects').where('id', id).delete();
 
-            return response.status(204).send(''); //o status 204 é quando retornamos uma mensagem de sucesso sem corpo para o nosso frontend
+            return response.status(204).send('');
     },
 
     async update (request, response) {
-        // pegando o id que vem por parâmetro
         const { id } = request.params;
         const { day, name, start, finish} = request.body;
-        const id_student = request.headers.authorization;//usamos o id_student para saber se o subject que estamos deletando realmente foi criado pelo o usuário
+        const id_student = request.headers.authorization;
 
         const subject = await connection('subjects')
-            .where('id', id)//veriicando se o id da sucject é o mesmo que estamos passando por parâmetro
-            .select('id_student')//selecionando o id_student
-            .first();//seleciona apenas um
+            .where('id', id)
+            .select('id_student')
+            .first();
 
-            if (subject.id_student != id_student){//se o id_student desse subject que buscamos no banco de dados for diferente do id_student que está logado da aplicação vai dá um erro
-                return response.status(401).json({ error: 'Operação não permitida'});// o status 401 significa não autorizado. depois passamos um objeto com uma mensagem de erro
+            if (subject.id_student != id_student){
+                return response.status(401).json({ error: 'Operação não permitida'});
             }
 
             await connection('subjects')
@@ -77,6 +73,6 @@ module.exports = {
                     finish,
                 });
 
-            return response.status(204).send(''); //o status 204 é quando retornamos uma mensagem de sucesso sem corpo para o nosso frontend
+            return response.status(204).send('');
     }
 };

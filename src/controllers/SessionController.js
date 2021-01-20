@@ -2,7 +2,7 @@ const connection = require('../database/connection');
 
 module.exports = {
     async create(request, response){
-        const { email, password } = request.body;//pegando o email e o password do corpo da requisição
+        const { email, password } = request.body;
 
         const user = await connection('users')
             .where({

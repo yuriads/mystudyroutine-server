@@ -17,7 +17,7 @@ const ProfileControllerWeek = require('./controllers/ProfileControllerWeek');
 const SessionController = require('./controllers/SessionController');
 const SessionControllerStudent = require('./controllers/SessionControllerStudent');
 
-const routes = express.Router();//estamos colocando o módulo Router dentro de um variável
+const routes = express.Router();
 
 routes.post('/session', SessionController.create);
 routes.post('/sessionstudent', SessionControllerStudent.create);
@@ -48,4 +48,4 @@ routes.post('/subjects', SubjectController.create);
 routes.delete('/subjects/:id', SubjectController.delete);
 routes.put('/subjects/:id', SubjectController.update);
 
-module.exports = routes;//exportando as rotas para elas ficarem acessíveis para o resto da aplicação
+module.exports = routes;
